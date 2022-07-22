@@ -70,6 +70,7 @@ pipeline {
                     cd /go/src/app
                     go get cloud.google.com/go/compute/metadata
                     go test
+                    mv /go/src/cloud.google.com /go/src/app
                   """
                 }
             }
