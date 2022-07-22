@@ -66,8 +66,8 @@ pipeline {
                   sh """
                     echo 'Running build automation'
                     cd src
-                    ln -s `pwd` /go/src/sample-app
-                    cd /go/src/sample-app
+                    ln -s `pwd` /go/src/app
+                    cd /go/src/app
                     go get cloud.google.com/go/compute/metadata
                     go test
                   """
