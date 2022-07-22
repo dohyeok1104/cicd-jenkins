@@ -28,6 +28,10 @@ spec:
     command:
     - cat
     tty: true
+    volumeMounts:
+    - mountPath: "/home/jenkins/agent"
+      name: "workspace-volume"
+      readOnly: false
     workingDir: "/home/jenkins/agent"
   nodeSelector:
     kubernetes.io/os: "linux"
@@ -50,7 +54,7 @@ pipeline {
         }
     }
     environment {
-        DOCKER_IMAGE_NAME = "human537/cicdtest"
+        DOCKER_IMAGE_NAME = "ehgur1104/cicdtest"
     }
     stages {
         stage('Build') {
@@ -93,7 +97,7 @@ pipeline {
             steps {     
                 container('topgun') {
                     script {
-                        docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
+                        docker.withRegistry('https://registry.hub.docker.com', 'docker-id') {
                             app.push("${env.BUILD_NUMBER}")
                             app.push("latest")
                         }
