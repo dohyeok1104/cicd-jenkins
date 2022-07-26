@@ -70,7 +70,8 @@ pipeline {
                     cd /go/src/app
                     go get cloud.google.com/go/compute/metadata
                     go build
-                    cp /go/src/app/app /home/jenkins/agent
+		    mv app app2
+                    cp /go/src/app/app2 /home/jenkins/agent
                   """
                 }
             }
