@@ -37,9 +37,9 @@ spec:
     kubernetes.io/os: "linux"
   restartPolicy: "Never"
   volumes:
-  - emptyDir:
-      medium: ""
-    name: "workspace-volume"
+  - name: "workspace-volume"
+    emptyDir:
+      medium: ""	
   - name: docker-sock
     hostPath:
       path: "/var/run/docker.sock"
@@ -70,8 +70,7 @@ pipeline {
                     cd /go/src/app
                     go get cloud.google.com/go/compute/metadata
                     go build
-		    mv app app2
-                    cp /go/src/app/app2 /home/jenkins/agent
+                    cp /go/src/app/app /home/jenkins/agent
                   """
                 }
             }
